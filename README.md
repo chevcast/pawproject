@@ -1,5 +1,4 @@
-Paw Project
-===========
+![](http://www.pawproject.org/images-n/logo_rev_yel_v1.png)
 
 This repository is where the future version of PawProject.org will be developed.
 
