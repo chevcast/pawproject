@@ -17,3 +17,4 @@ Open Source
 This project is open source. The application was developed entirely voluntarily for the Paw Project charity,
 and in the same spirit the project will always remain open source. Please feel free to submit any issues or
 pull requests.
+=======
