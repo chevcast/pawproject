@@ -1,3 +1,3 @@
-exports.index = function (req, res) {
+module.exports = function (req, res) {
     res.render('root/faq', { title: 'Paw Project FAQ' });
 };

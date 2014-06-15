@@ -1,4 +1,9 @@
 extends ../layout
 
 block content
-    h1 FAQ
+    div(ng-app="faq", ng-controller="faqController")
+        h1 Frequently Asked Questions
+        div(ng-repeat="item in items")
+            div.question Q. {{item.question}}
+            div.answer A. {{item.answer}}
+    script(src="/javascripts/faq.js")
