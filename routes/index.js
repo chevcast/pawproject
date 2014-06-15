@@ -1,9 +1,9 @@
-var express = require('express');
-var router = express.Router();
+exports.init = function (app) {
 
-/* GET home page. */
-router.get('/', function(req, res) {
-  res.render('index', { title: 'Paw Project Utah' });
-});
+    // Root pages.
+    app.use('/', require('./root'));
 
-module.exports = router;
+    // Groups pages.
+    app.use('/groups', require('./groups'));
+
+};
