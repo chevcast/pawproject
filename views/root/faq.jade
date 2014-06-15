@@ -3,7 +3,8 @@ extends ../layout
 block content
     div(ng-app="faq", ng-controller="faqController")
         h1 Frequently Asked Questions
-        div(ng-repeat="item in items")
-            div.question Q. {{item.question}}
-            div.answer A. {{item.answer}}
+        div.item(ng-repeat="item in items")
+            div.question {{$index}}) {{item.question}}
+            div.answer {{item.answer}}
     script(src="/javascripts/faq.js")
+    link(rel="stylesheet", href="/stylesheets/faq.css")

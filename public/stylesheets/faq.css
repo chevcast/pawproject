@@ -1,0 +1,19 @@
+div.item {
+    padding: 10px;
+    border-left: solid 1px #ccc;
+    border-top: solid 1px #ccc;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    background-color: #eee;
+}
+
+div.question {
+    font-weight: bold;
+    font-size: large;
+    margin-bottom: 10px;
+}
+
+div.answer {
+    margin-left: 35px;
+    color: #090;
+}
