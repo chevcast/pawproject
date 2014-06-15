@@ -55,7 +55,4 @@ app.use(function(err, req, res, next) {
     });
 });
 
-var port = process.env.PORT || 1337;
-app.listen(port, function () {
-    console.log('Express server listening at http://localhost:' + port);
-});
+module.exports = app;
