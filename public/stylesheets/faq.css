@@ -5,6 +5,25 @@ div.item {
     border-radius: 15px;
     margin-bottom: 25px;
     background-color: #eee;
+    position: relative;
+}
+
+div.item:hover {
+    background-color: #ccc;
+}
+
+div.controls {
+    font-size: large;
+    float: right;
+}
+span.edit-item {
+    color: #060;
+    cursor: pointer;
+    margin-right: 15px;
+}
+span.remove-item {
+    color: #c00;
+    cursor: pointer;
 }
 
 div.question {

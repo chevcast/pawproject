@@ -3,7 +3,10 @@ extends ../layout
 block content
     div(ng-app="faq", ng-controller="faqController")
         h1 Frequently Asked Questions
-        div.item(ng-repeat="item in items")
+        div.item(ng-repeat="item in items", ng-mouseover="item.showControls = true", ng-mouseleave="item.showControls = false")
+            div.controls(ng-show="item.showControls")
+                span.edit-item.glyphicon.glyphicon-edit
+                span.remove-item.glyphicon.glyphicon-minus-sign
             div.question {{$index}}) {{item.question}}
             div.answer {{item.answer}}
     script(src="/javascripts/faq.js")
