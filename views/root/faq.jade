@@ -1,13 +1,46 @@
 extends ../layout
 
 block content
-    div(ng-app="faq", ng-controller="faqController")
-        h1 Frequently Asked Questions
-        div.item(ng-repeat="item in items", ng-mouseover="item.showControls = true", ng-mouseleave="item.showControls = false")
-            div.controls(ng-show="item.showControls")
-                span.edit-item.glyphicon.glyphicon-edit
-                span.remove-item.glyphicon.glyphicon-minus-sign
-            div.question {{$index}}) {{item.question}}
-            div.answer {{item.answer}}
-    script(src="/javascripts/faq.js")
-    link(rel="stylesheet", href="/stylesheets/faq.css")
+  div(ng-app="faq", ng-controller="faqController")
+    button.btn.btn-info.pull-right(ng-click="newQuestion()") New Question
+    h1 Frequently Asked Questions
+    // Show a container for each frequently asked question.
+    div.item(
+      ng-repeat="item in items",
+      ng-mouseover="item.showControls = true",
+      ng-mouseleave="item.showControls = false"
+    )
+      // Either show the question as it should be shown to the user, or show an edit form.
+      div(ng-switch="item.edit")
+        div(ng-switch-when="false")
+          div.controls(ng-show="item.showControls")
+            span.edit-item.glyphicon.glyphicon-edit(ng-click="edit(item)")
+            span.remove-item.glyphicon.glyphicon-minus-sign(ng-click="remove(item)")
+          div.question {{ item.faq.question }}
+          div.answer {{ item.faq.answer }}
+        form(ng-switch-when="true", name="form")
+          div.form-group
+            label(for="question") Question
+            input.form-control(
+              type="text",
+              name="question",
+              ng-model="item.faq.question",
+              placeholder="Enter a frequently asked question.",
+              required
+            )
+          div.form-group
+            label(for="answer") Answer 
+            textarea.form-control(
+              rows="5",
+              name="answer",
+              ng-model="item.faq.answer",
+              placeholder="Supply an answer to the question.",
+              required
+            )
+          button.btn.btn-success(
+            ng-click="save(item)",
+            ng-disabled="form.$invalid || isUnchanged(item)"
+          ) Save
+          button.btn.btn-danger(ng-click="cancel(item)") Cancel
+  script(src="/javascripts/faq.js")
+  link(rel="stylesheet", href="/stylesheets/faq.css")

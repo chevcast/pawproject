@@ -1,26 +1,38 @@
 var db = require('mongoose-simpledb').db;
 
 exports.create = function (req, res) {
-	res.end('Not yet implemented.');
+  var faq = new db.Faq({
+    question: req.param('question'),
+    answer: req.param('answer')
+  });
+  faq.save(function (err, faq) {
+    if (err) return console.error(err);
+    res.send(faq);
+  });
 };
 
 exports.read = function (req, res) {
-    res.send([
-        {
-            question: 'What is the meaning of life, the universe, and everything?',
-            answer: '42'
-        },
-        {
-            question: 'Test Question?',
-            answer: 'A longer answer that takes up a lot more of its container, but hopefully continues to look elegant on the page as the text is okay to flow throuhgout. The user should not be limited on how much text they can place in this field.',
-        }
-    ]);
+  db.Faq.find(function (err, faqs) {
+    if (err) return console.error(err);
+    res.send(faqs);
+  });
 };
 
 exports.update = function (req, res) {
-	res.end('Not yet implemented.');
+  var id = req.param('id');
+  db.Faq.findByIdAndUpdate(id, {
+    question: req.param('question'),
+    answer: req.param('answer')
+  }, function (err, faq) {
+    if (err) return console.error(err);
+    res.send(faq);
+  });
 };
 
 exports.delete = function (req, res) {
-	res.end('Not yet implemented.');
+  var id = req.param('id');
+  db.Faq.findByIdAndRemove(id, function (err, faq) {
+    if (err) return console.error(err);
+    res.send({});
+  });
 };

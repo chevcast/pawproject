@@ -4,7 +4,6 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var routes = require('./routes');
 var simpledb = require('mongoose-simpledb');
 
 simpledb.init(process.env.CONNECTION_STRING || 'mongodb://localhost/pawproject');
@@ -24,8 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.use('/api', require('./routes/api'));
-app.use('/', require('./routes/root');
-app.use('/groups', require('./routes/groups');
+app.use('/', require('./routes/pages'));
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,5 +1,5 @@
 var router = require('express').Router();
-var pages = require('../controllers/pages');
+var pages = require('../controllers/pages/root');
 
 router.get('/', pages.home);
 router.get('/blog', pages.blog);
