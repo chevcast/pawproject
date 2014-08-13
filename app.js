@@ -8,7 +8,8 @@ var simpledb = require('mongoose-simpledb');
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 
-simpledb.init(process.env.CONNECTION_STRING || 'mongodb://localhost/pawproject', function (db) {
+simpledb.init(process.env.CONNECTION_STRING || 'mongodb://localhost/pawproject', function (err, db) {
+  if (err) return console.error(err);
 
   passport.use(new FacebookStrategy({
       clientID: process.env.FACEBOOK_APP_ID || '319527944881597',
@@ -16,7 +17,7 @@ simpledb.init(process.env.CONNECTION_STRING || 'mongodb://localhost/pawproject',
       callbackURL: "http://dev.pawproject.org/auth/facebook/callback"
     },
     function(accessToken, refreshToken, profile, done) {
-      User.findOne({ email: profile.email }, function(err, user) {
+      db.User.findOne({ email: profile.email }, function(err, user) {
         if (err) { return done(err); }
         done(null, user);
       });
