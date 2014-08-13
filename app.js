@@ -14,10 +14,11 @@ simpledb.init(process.env.CONNECTION_STRING || 'mongodb://localhost/pawproject',
   passport.use(new FacebookStrategy({
       clientID: process.env.FACEBOOK_APP_ID || '319527944881597',
       clientSecret: process.env.FACEBOOK_APP_SECRET || '16116728519e48da772b1be398b6cb38',
-      callbackURL: "http://dev.pawproject.org/auth/facebook/callback"
+      callbackURL: "http://localhost:1337/auth/facebook/callback"
     },
     function(accessToken, refreshToken, profile, done) {
-      db.User.findOne({ email: profile.email }, function(err, user) {
+      console.log(profile);
+      db.User.findOne({ facebookId: profile.id }, function(err, user) {
         if (err) { return done(err); }
         done(null, user);
       });
@@ -41,7 +42,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
-app.get('/auth/facebook', passport.authenticate('facebook'));
+app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email'] }));
 app.get('/auth/facebook/callback', passport.authenticate('facebook', {
   successRedirect: '/',
   failureRedirect: '/login'

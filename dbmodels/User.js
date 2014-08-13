@@ -6,6 +6,7 @@ exports.schema = {
     last: String
   },
   roles: [{ type: Types.ObjectId, ref: 'Role' }],
+  facebookId: String,
   email: String,
   password: String,
   bio: String,
