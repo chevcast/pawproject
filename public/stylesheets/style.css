@@ -6,3 +6,7 @@ h1 {
     border-bottom: dotted 1px #ccc;
     margin-bottom: 25px;
 }
+
+.btn {
+  margin-right: 10px;
+}

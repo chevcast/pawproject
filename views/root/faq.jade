@@ -12,12 +12,15 @@ block content
     )
       // Either show the question as it should be shown to the user, or show an edit form.
       div(ng-switch="item.edit")
+        // Show the question.
         div(ng-switch-when="false")
+          // Show edit/delete controls on hover.
           div.controls(ng-show="item.showControls")
             span.edit-item.glyphicon.glyphicon-edit(ng-click="edit(item)")
             span.remove-item.glyphicon.glyphicon-minus-sign(ng-click="remove(item)")
           div.question {{ item.faq.question }}
           div.answer {{ item.faq.answer }}
+        // Show an edit form for new and existing questions.
         form(ng-switch-when="true", name="form")
           div.form-group
             label(for="question") Question
@@ -37,10 +40,13 @@ block content
               placeholder="Supply an answer to the question.",
               required
             )
+          // Disable the save button if the required fields are not filled out or
+          // the data is unchanged.
           button.btn.btn-success(
             ng-click="save(item)",
             ng-disabled="form.$invalid || isUnchanged(item)"
           ) Save
           button.btn.btn-danger(ng-click="cancel(item)") Cancel
+  // Include FAQ-specific scripts and CSS.
   script(src="/javascripts/faq.js")
   link(rel="stylesheet", href="/stylesheets/faq.css")

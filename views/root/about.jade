@@ -1,0 +1,16 @@
+extends ../layout
+
+block content
+  div(ng-app="about", ng-controller="aboutController as abt")
+    button.btn.btn-info.pull-right(ng-click="abt.edit=true") Edit About
+    h1 About
+    div(ng-switch="abt.edit")
+      div(ng-switch-when="false") {{ abt.aboutContent.value }}
+      form.well(ng-switch-when="true")
+        div.form-group
+          label(for="content") Content
+          textarea.form-control(name="content", rows="10", ng-model="abt.aboutContent.value")
+        button.btn.btn-success(ng-click="abt.save()") Save
+        button.btn.btn-danger(ng-click="abt.edit=false") Cancel
+  script(src="/javascripts/about.js")
+  link(rel="stylesheet", href="/stylesheets/about.css")

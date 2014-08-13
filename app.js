@@ -5,8 +5,26 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var simpledb = require('mongoose-simpledb');
+var passport = require('passport');
+var FacebookStrategy = require('passport-facebook').Strategy;
 
-simpledb.init(process.env.CONNECTION_STRING || 'mongodb://localhost/pawproject');
+simpledb.init(process.env.CONNECTION_STRING || 'mongodb://localhost/pawproject', function (db) {
+
+  passport.use(new FacebookStrategy({
+      clientID: process.env.FACEBOOK_APP_ID || '319527944881597',
+      clientSecret: process.env.FACEBOOK_APP_SECRET || '16116728519e48da772b1be398b6cb38',
+      callbackURL: "http://dev.pawproject.org/auth/facebook/callback"
+    },
+    function(accessToken, refreshToken, profile, done) {
+      User.findOne({ email: profile.email }, function(err, user) {
+        if (err) { return done(err); }
+        done(null, user);
+      });
+    }
+  ));
+
+});
+
 
 var app = express();
 
@@ -22,14 +40,19 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
+app.get('/auth/facebook', passport.authenticate('facebook'));
+app.get('/auth/facebook/callback', passport.authenticate('facebook', {
+  successRedirect: '/',
+  failureRedirect: '/login'
+}));
 app.use('/api', require('./routes/api'));
 app.use('/', require('./routes/pages'));
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
 
 /// error handlers
@@ -37,23 +60,23 @@ app.use(function(req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-    app.use(function(err, req, res, next) {
-        res.status(err.status || 500);
-        res.render('error', {
-            message: err.message,
-            error: err
-        });
+  app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+      message: err.message,
+      error: err
     });
+  });
 }
 
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-        message: err.message,
-        error: {}
-    });
+  res.status(err.status || 500);
+  res.render('error', {
+    message: err.message,
+    error: {}
+  });
 });
 
 module.exports = app;
