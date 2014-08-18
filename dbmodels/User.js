@@ -11,8 +11,8 @@ exports.schema = {
   password: String,
   bio: String,
   birthDate: Date,
-  joinDate: Date,
-  lastActive: Date,
+  joinDate: { type: Date, default: Date.now() },
+  lastActive: { type: Date, default: Date.now() }
 };
 
 exports.virtuals = {
@@ -21,4 +21,10 @@ exports.virtuals = {
       return this.name.first + ' ' + this.name.last;
     }
   }
-}
+};
+
+exports.methods = {
+  isAdmin: function () {
+    return true;
+  }
+};

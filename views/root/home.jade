@@ -1,36 +1,36 @@
 extends ../layout
 
 block content
-    .row
-        .col-md-12
-            .jumbotron
-                h1 Welcome!
-                p Paw Project Utah is a non-profit organization dedicated to spreading awareness about how brutal the practice of cat declawing is.
-                button.btn.btn-primary.btn-large Learn more
-    .row
-        .col-md-5
-            .well I am in a well.
-        .col-md-7
-            #cat-carousel.carousel.slide(data-ride="carousel")
-                // Indicators.
-                ol.carousel-indicators
-                    li.active(data-target="#cat-carousel", data-slide-to="0")
-                    li(data-target="#cat-carousel", data-slide-to="1")
-                    li(data-target="#cat-carousel", data-slide-to="2")
-                // Wrapper for slides.
-                // TODO: Remove the style from this element and create proper CSS rules.
-                div(style="min-height: 300px; padding: 0 15% 0 15%; background-color: #000;").carousel-inner.text-center
-                    .item.active
-                        h1 Welcome!
-                        #carousel-caption caption text
-                    .item
-                        h1 Second Slide!
-                        #carousel-caption caption text 2
-                    .item
-                        h1 Third Slide!
-                        #carousel-caption caption text 3
-                // Controls
-                a.left.carousel-control(href="#cat-carousel", data-slide="prev")
-                    span.glyphicon.glyphicon-chevron-left
-                a.right.carousel-control(href="#cat-carousel", data-slide="next")
-                    span.glyphicon.glyphicon-chevron-right
+  .row
+    .col-md-12
+      .jumbotron
+        h1 Welcome!
+        p Paw Project Utah is a non-profit organization dedicated to spreading awareness about how brutal the practice of cat declawing is.
+        button.btn.btn-primary.btn-large Learn more
+  .row
+    .col-md-5
+      .well I am in a well.
+    .col-md-7
+      #caucarousel.carousel.slide(data-ride="carousel")
+        // Indicators.
+        ol.carousel-indicators
+          li.active(data-target="#cat-carousel", data-slide-to="0")
+          li(data-target="#cat-carousel", data-slide-to="1")
+          li(data-target="#cat-carousel", data-slide-to="2")
+        // Wrapper for slides.
+        // TODO: Remove the style from this element and create proper CSS rules.
+        div(style="min-height: 300px; padding: 0 15% 0 15%; background-color: #000;").carousel-inner.text-center
+          .item.active
+            h1 Welcome!
+            #carousel-caption caption text
+          .item
+            h1 Second Slide!
+            #carousel-caption caption text 2
+          .item
+            h1 Third Slide!
+            #carousel-caption caption text 3
+        // Controls
+        a.left.carousel-control(href="#cat-carousel", data-slide="prev")
+          span.glyphicon.glyphicon-chevron-left
+        a.right.carousel-control(href="#cat-carousel", data-slide="next")
+          span.glyphicon.glyphicon-chevron-right

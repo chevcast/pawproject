@@ -2,7 +2,8 @@ extends ../layout
 
 block content
   div(ng-app="faq", ng-controller="faqController")
-    button.btn.btn-info.pull-right(ng-click="newQuestion()") New Question
+    if (user && user.isAdmin())
+      button.btn.btn-info.pull-right(ng-click="newQuestion()") New Question
     h1 Frequently Asked Questions
     // Show a container for each frequently asked question.
     div.item(
@@ -15,9 +16,10 @@ block content
         // Show the question.
         div(ng-switch-when="false")
           // Show edit/delete controls on hover.
-          div.controls(ng-show="item.showControls")
-            span.edit-item.glyphicon.glyphicon-edit(ng-click="edit(item)")
-            span.remove-item.glyphicon.glyphicon-minus-sign(ng-click="remove(item)")
+          if (user && user.isAdmin())
+            div.controls(ng-show="item.showControls")
+              span.edit-item.glyphicon.glyphicon-edit(ng-click="edit(item)")
+              span.remove-item.glyphicon.glyphicon-minus-sign(ng-click="remove(item)")
           div.question {{ item.faq.question }}
           div.answer {{ item.faq.answer }}
         // Show an edit form for new and existing questions.

@@ -1,12 +1,38 @@
 body {
-    padding-top: 70px;
+  padding-top: 100px;
 }
 
 h1 {
-    border-bottom: dotted 1px #ccc;
-    margin-bottom: 25px;
+  border-bottom: dotted 1px #ccc;
+  margin-bottom: 25px;
 }
 
 .btn {
   margin-right: 10px;
+}
+
+.footer {
+  font-size: 12px;
+  margin: 25px 0 25px 0;
+  text-align: right;
+}
+
+.footer a, .footer span {
+  margin-right: 10px;
+}
+
+.auth-info-box {
+  margin: 10px 0 10px 0;
+  color: #eee;
+  display: inline-block;
+}
+.profile-photo {
+  width: 35px;
+  height: 35px;
+}
+.auth-info {
+  text-transform: none;
+  margin-right: 7px;
+  text-align: right;
+  vertical-align: top;
 }
