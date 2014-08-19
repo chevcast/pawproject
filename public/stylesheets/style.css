@@ -1,5 +1,23 @@
 body {
   padding-top: 100px;
+  background-image: url('/images/background.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.jumbotron {
+  background: url('/images/handpaw.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #fff;
+  border-radius: 15px !important;
+}
+
+.well {
+  border: solid 5px #777;
+  border-radius: 15px;
+  box-shadow: inset 0px 0px 15px #000;
 }
 
 h1 {
@@ -27,12 +45,20 @@ h1 {
   display: inline-block;
 }
 .profile-photo {
-  width: 35px;
-  height: 35px;
+  width: 40px;
+  height: 40px;
 }
 .auth-info {
   text-transform: none;
   margin-right: 7px;
   text-align: right;
   vertical-align: top;
+}
+
+ul.paws li {
+  background: url(/images/paw-bullet.png) no-repeat left top;
+  padding: 7px 0px 15px 40px;
+  /* reset styles (optional): */
+  list-style: none;
+  margin: 0;
 }

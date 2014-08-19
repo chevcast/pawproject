@@ -3,7 +3,7 @@ extends ../layout
 block content
   div(ng-app="about", ng-controller="aboutController as abt")
     if (user && user.isAdmin())
-      button.btn.btn-info.pull-right(ng-click="abt.edit = true") Edit About
+      button.btn.btn-primary.pull-right(ng-click="abt.edit = true") Edit About
     h1 About
     div(ng-switch="abt.edit")
       div(ng-switch-when="false" ng-bind-html="abt.parsedContent")

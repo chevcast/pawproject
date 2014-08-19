@@ -1,15 +1,11 @@
 div.item {
     padding: 15px;
-    border-left: solid 1px #ccc;
-    border-top: solid 1px #ccc;
-    border-radius: 15px;
     margin-bottom: 25px;
     background-color: #eee;
     position: relative;
 }
 
 div.item:hover {
-    background-color: #ccc;
 }
 
 div.controls {

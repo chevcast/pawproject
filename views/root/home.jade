@@ -4,33 +4,24 @@ block content
   .row
     .col-md-12
       .jumbotron
-        h1 Welcome!
-        p Paw Project Utah is a non-profit organization dedicated to spreading awareness about how brutal the practice of cat declawing is.
-        button.btn.btn-primary.btn-large Learn more
+        div.pull-right
+          a(href="")
+            img(style="width: 200px;", src="/images/make-a-donation.png")
+        img(src="/images/paw-project-logo-bright.png")
+        div(style="border-bottom: solid 1px #999; margin: 10px 0 10px 0;")
+        p Declawing isn't like getting a manicure or trimming your finger nails. Declawing a cat is the equivalent of removing the tips of all of your fingers down to the first knuckle. Help us put a stop to this brutal and inhumane practice!
+        a.btn.btn-primary.btn-large YOU CAN HELP!
   .row
-    .col-md-5
-      .well I am in a well.
-    .col-md-7
-      #caucarousel.carousel.slide(data-ride="carousel")
-        // Indicators.
-        ol.carousel-indicators
-          li.active(data-target="#cat-carousel", data-slide-to="0")
-          li(data-target="#cat-carousel", data-slide-to="1")
-          li(data-target="#cat-carousel", data-slide-to="2")
-        // Wrapper for slides.
-        // TODO: Remove the style from this element and create proper CSS rules.
-        div(style="min-height: 300px; padding: 0 15% 0 15%; background-color: #000;").carousel-inner.text-center
-          .item.active
-            h1 Welcome!
-            #carousel-caption caption text
-          .item
-            h1 Second Slide!
-            #carousel-caption caption text 2
-          .item
-            h1 Third Slide!
-            #carousel-caption caption text 3
-        // Controls
-        a.left.carousel-control(href="#cat-carousel", data-slide="prev")
-          span.glyphicon.glyphicon-chevron-left
-        a.right.carousel-control(href="#cat-carousel", data-slide="next")
-          span.glyphicon.glyphicon-chevron-right
+    .col-md-8
+      .well
+        h2.text-center Facts About Declawing
+        ul.paws(style="font-size: larger;")
+          li Declawing is amputation; it is not merely the removal of the claws. To declaw a cat, the veterinarian cuts off the last knuckles of a cat's paw – cutting through bone, tendons, skin and nerves. In a person, it is equivalent to amputating each finger or toe at the last joint.
+          li Declaw surgery can be an extremely painful procedure with associated health risks and complications such as infection.
+          li Declaw surgery can produce permanent lameness, pain or arthritis.
+          li Declawing is the same mutilating procedure for house cats or big cats.
+          li
+            a(href="/faq") More about feline declawing and humane alternatives to declaw surgery »
+    .col-md-4
+      .well.text-center
+        img(style="border-radius: 10px;", src="/images/paw-project-movie.gif")

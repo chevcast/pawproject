@@ -31,7 +31,6 @@ passport.use(new FacebookStrategy({
   },
   // This function runs when facebook authentication returns with an access token.
   function(accessToken, refreshToken, profile, done) {
-    console.log(profile);
     // Look in the database for a user with the facebook ID.
     db.User.findOne({ facebookId: profile.id }, function(err, user) {
       if (err) { return done(err); }

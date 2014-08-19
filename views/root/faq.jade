@@ -3,10 +3,10 @@ extends ../layout
 block content
   div(ng-app="faq", ng-controller="faqController")
     if (user && user.isAdmin())
-      button.btn.btn-info.pull-right(ng-click="newQuestion()") New Question
+      button.btn.btn-primary.pull-right(ng-click="newQuestion()") New Question
     h1 Frequently Asked Questions
     // Show a container for each frequently asked question.
-    div.item(
+    div.item.well(
       ng-repeat="item in items",
       ng-mouseover="item.showControls = true",
       ng-mouseleave="item.showControls = false"
@@ -21,7 +21,7 @@ block content
               span.edit-item.glyphicon.glyphicon-edit(ng-click="edit(item)")
               span.remove-item.glyphicon.glyphicon-minus-sign(ng-click="remove(item)")
           div.question {{ item.faq.question }}
-          div.answer {{ item.faq.answer }}
+          div.answer(ng-bind-html="item.parsedAnswer")
         // Show an edit form for new and existing questions.
         form(ng-switch-when="true", name="form")
           div.form-group
