@@ -27,7 +27,7 @@ passport.deserializeUser(function(userId, done) {
 passport.use(new FacebookStrategy({
     clientID: process.env.FACEBOOK_APP_ID || '319527944881597',
     clientSecret: process.env.FACEBOOK_APP_SECRET || '16116728519e48da772b1be398b6cb38',
-    callbackURL: "http://localhost:1337/auth/facebook/callback"
+    callbackURL: "http://dev.pawproject.org/auth/facebook/callback"
   },
   // This function runs when facebook authentication returns with an access token.
   function(accessToken, refreshToken, profile, done) {
