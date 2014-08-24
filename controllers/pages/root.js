@@ -1,7 +1,3 @@
-exports.login = function (req, res) {
-  res.render('root/login', { title: 'Authenticate' });
-};
-
 exports.blog = function (req, res) {
   res.render('root/blog', { title: 'Paw Project Blog' });
 };
@@ -16,4 +12,8 @@ exports.faq = function (req, res) {
 
 exports.home = function (req, res) {
 	res.render('root/home', { title: 'Paw Project' });
+};
+
+exports.contact = function (req, res) {
+  res.render('root/contact', { title: 'Contact' });
 };
