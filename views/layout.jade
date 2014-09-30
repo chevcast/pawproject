@@ -71,13 +71,13 @@ html(lang="en")
           ul.nav.navbar-nav.navbar-right
             li
               if (!user)
-                a(href="/auth/facebook?redirect=" + currentUrl) Login
+                a(href="/auth/login?redirectUrl=" + currentUrl) Login
               else
                 div.auth-info-box
                   div.auth-info(style="display: inline-block;")
                     span= user.name.full
                     br
-                    a(href="/logout?redirect=" + currentUrl) logout
+                    a(href="/auth/logout?redirect=" + currentUrl) logout
                   img.profile-photo(src="http://graph.facebook.com/" + user.facebookId + "/picture?width=40&height=40")
     .container
       block content

@@ -7,56 +7,9 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var simpledb = require('mongoose-simpledb');
 var passport = require('passport');
-var FacebookStrategy = require('passport-facebook').Strategy;
 
 // Initialize the database and then the application.
 var db = simpledb.init(process.env.CONNECTION_STRING || 'mongodb://localhost/pawproject');
-
-// Setup passport serialize/deserialize functions to store just the user ID in session and restore
-// the user upon each request.
-passport.serializeUser(function(user, done) {
-  done(null, user._id);
-});
-passport.deserializeUser(function(userId, done) {
-  db.User.findById(userId, function(err, user) {
-    done(err, user);
-  });
-});
-
-// Initialize the Facebook passport strategy.
-passport.use(new FacebookStrategy({
-    clientID: process.env.FACEBOOK_APP_ID || '319527944881597',
-    clientSecret: process.env.FACEBOOK_APP_SECRET || '16116728519e48da772b1be398b6cb38',
-    callbackURL: "http://dev.pawproject.org/auth/facebook/callback"
-  },
-  // This function runs when facebook authentication returns with an access token.
-  function(accessToken, refreshToken, profile, done) {
-    // Look in the database for a user with the facebook ID.
-    db.User.findOne({ facebookId: profile.id }, function(err, user) {
-      if (err) { return done(err); }
-      // If there is no user returned, create one.
-      if (!user) {
-        user = new db.User({
-          facebookId: profile.id,
-          name: {
-            first: profile.name.givenName,
-            last: profile.name.familyName
-          }
-        });
-        // If an email was returned from facebook, store it.
-        if (profile.emails.length > 0)
-          user.email = profile.emails[0].value;
-      }
-      // Set the user's last active date, to keep track of how often the log in.
-      user.lastActive = Date.now();
-      // Save the new/updated user.
-      user.save(function (err, user) {
-        // Done authenticating.
-        done(err, user);
-      });
-    });
-  }
-));
 
 var app = express();
 
@@ -94,22 +47,8 @@ app.get('/session', function (req, res) {
   res.send(req.session);
 });
 
-// Passport endpoints.
-app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email'] }));
-app.get('/auth/facebook/callback', passport.authenticate('facebook'), function (req, res) {
-  res.redirect(req.session.redirectUrl);
-});
-
-// Authentication endpoints.
-app.get('/login', function (req, res) {
-  res.send('not implemented');
-});
-app.get('/logout', function (req, res) {
-  req.logout();
-  res.redirect(req.session.redirectUrl);
-});
-
 // Page endpoints.
+app.use('/auth', require('./routes/auth'));
 app.use('/api', require('./routes/api'));
 app.use('/', require('./routes/pages'));
 

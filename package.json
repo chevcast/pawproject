@@ -15,8 +15,11 @@
     "marked": "^0.3.2",
     "mongoose-simpledb": "^3.0.4",
     "morgan": "~1.1.1",
-    "passport": "^0.2.0",
+    "passport": "^0.2.1",
     "passport-facebook": "^1.0.3",
+    "passport-google-oauth": "^0.1.5",
+    "passport-local": "^1.0.0",
+    "passport-twitter": "^1.0.2",
     "static-favicon": "~2.0.0-alpha"
   }
 }
