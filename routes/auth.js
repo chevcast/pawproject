@@ -1,4 +1,5 @@
 var express = require('express');
+var validator = require('express-validator');
 var router = express.Router();
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;

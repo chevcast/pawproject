@@ -1,15 +1,23 @@
 var Types = require('mongoose-simpledb').Types;
+var validators = require('../utilities/validators');
 
 exports.schema = {
   name: {
-    first: String,
+    first: { type: String, required: 'Must include a first name.' },
     last: String
   },
   facebookId: String,
   googleId: String,
   twitterId: String,
-  email: String,
-  password: String,
+  email: {
+    type: String,
+    required: 'An email is required.',
+    validate: validators.email
+  },
+  password: {
+    type: String,
+    required: 'You must include a password.'
+  },
   superAdmin: Boolean,
   joinDate: { type: Date, default: Date.now() },
   lastActive: { type: Date, default: Date.now() }
