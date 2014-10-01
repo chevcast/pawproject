@@ -7,10 +7,10 @@ exports.schema = {
   },
   roles: [{ type: Types.ObjectId, ref: 'Role' }],
   facebookId: String,
+  googleId: String,
+  twitterId: String,
   email: String,
   password: String,
-  bio: String,
-  birthDate: Date,
   joinDate: { type: Date, default: Date.now() },
   lastActive: { type: Date, default: Date.now() }
 };

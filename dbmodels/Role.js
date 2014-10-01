@@ -1,3 +1,5 @@
+var db = require('mongoose-simpledb').db;
+
 exports.schema = {
   name: String,
   description: String
@@ -5,7 +7,7 @@ exports.schema = {
 
 exports.methods = {
   // Get all users with the specific role.
-  users: function () {
-    //todo 
+  getUsers: function (cb) {
+    // TODO: db query into user roles.
   }
 };

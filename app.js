@@ -9,7 +9,13 @@ var simpledb = require('mongoose-simpledb');
 var passport = require('passport');
 
 // Initialize the database and then the application.
-var db = simpledb.init(process.env.CONNECTION_STRING || 'mongodb://localhost/pawproject');
+var db = simpledb.init(
+  process.env.CONNECTION_STRING || 'mongodb://localhost/pawproject',
+  function (err, db) {
+    if (err) return console.error(err);
+    // TODO: Initialize the database with seed data if it doesn't exist.
+  }
+);
 
 var app = express();
 
