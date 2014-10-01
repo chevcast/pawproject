@@ -27,3 +27,5 @@ node_modules
 # Vim files
 *.swp
 *.swo
+
+temp.js

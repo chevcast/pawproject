@@ -34,9 +34,9 @@ html(lang="en")
       new WOW().init();
   body
     nav.navbar.navbar-default.navbar-fixed-top(role="navigation")
-      .container
+      div.container
         // Brand and toggle are grouped for better mobile display.
-        .navbar-header
+        div.navbar-header
           button.navbar-toggle(type="button", data-toggle="collapse", data-target="#site-navbar")
             span.sr-only Toggle navigation
             span.icon-bar
@@ -45,7 +45,7 @@ html(lang="en")
           a.navbar-brand(href="/")
             img(src="/images/paw-project-logo-bright.png", style="height: 30px")
         // Group all nav content so it can be toggled on mobile displays.
-        #site-navbar.collapse.navbar-collapse
+        div#site-navbar.collapse.navbar-collapse
           ul.nav.navbar-nav
             li.active
               a(href="/") Home
@@ -79,9 +79,10 @@ html(lang="en")
                     br
                     a(href="/auth/logout?redirect=" + currentUrl) logout
                   img.profile-photo(src="http://graph.facebook.com/" + user.facebookId + "/picture?width=40&height=40")
-    .container
+    div.container
       block content
-      .footer
+      br
+      div.row.footer
         a User Agreement
         span &bull;
         a Privacy Policy

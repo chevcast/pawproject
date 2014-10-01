@@ -1,0 +1,27 @@
+extends ../layout
+
+block content
+  div.row
+    form.col-md-6.col-md-offset-2.well(action="/auth/signup", method="POST")
+      div.form-group
+        label(for="email") Email
+        input.form-control(type="email", name="email", placeholder="Enter an email address.")
+      div.form-group
+        label(for="confirmEmail") Confirm Email
+        input.form-control(type="email", name="confirmEmail", placeholder="Re-type your email to confirm.")
+      div.form-group
+        label(for="password") Choose a Password
+        input.form-control(type="password", name="password", placeholder="Type a password.")
+      div.form-group
+        label(for="confirmPassword") Confirm Password
+        input.form-control(type="password", name="confirmPassword", placeholder="Re-type your password to confirm.")
+      div.form-group
+        label(for="firstName") First Name
+        input.form-control(type="text", name="firstName", placeholder="Supply your first name.")
+      div.form-group
+        label(for="lastName") Last Name
+        input.form-control(type="text", name="lastName", placeholder="Supply your last name.")
+      div.form-group
+        label(for="authCode") Authorization Code
+        input.form-control(type="text", name="authCode", placeholder="Currently to sign up you need a pre-approved authorization code.")
+      button#signUp.btn.btn-primary(type="submit") Sign Up!

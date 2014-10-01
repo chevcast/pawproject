@@ -9,6 +9,14 @@ var LocalStrategy = require('passport-local').Strategy;
  */
 var db = require('mongoose-simpledb').db;
 
+passport.serializeUser(function(user, done) {
+  done(null, user._id);
+});
+
+passport.deserializeUser(function(id, done) {
+  db.User.findById(id, done);
+});
+
 // Login page.
 router.get('/login', function(req, res) {
   res.render('auth/login', { title: 'Please login.' });
@@ -19,9 +27,43 @@ router.get('/logout', function (req, res) {
   res.redirect(req.session.redirectUrl);
 });
 
+/**********************************************************************************/
+
 // Signup page.
 router.get('/signup', function (req, res) {
   res.render('auth/signup', { title: 'Sign up' });
+});
+
+// Signup submit.
+router.post('/signup', function (req, res) {
+  var email = req.param('email');
+  var password = req.param('password');
+  var firstName = req.param('firstName');
+  var lastName = req.param('lastName');
+  var authCode = req.param('authCode').replace(/-/g, '');
+  db.AuthCode.findOne({ code: authCode }, function (err, authCode) {
+    if (err) return console.error(err);
+    if (!authCode) {
+      return res.redirect('/auth/signup');
+    }
+    var newUser = new db.User({
+      email: email,
+      password: password,
+      name: {
+        first: firstName,
+        last: lastName
+      },
+      // TODO: check authCode for role type.
+      superAdmin: true
+    });
+    newUser.save(function (err, user) {
+      if (err) return console.error(err);
+      authCode.remove(function (err) {
+        if (err) return console.error(err);
+        res.redirect(req.session.redirectUrl);
+      });
+    });
+  })
 });
 
 
@@ -29,11 +71,13 @@ router.get('/signup', function (req, res) {
 
 // Email & Password config
 passport.use(new LocalStrategy(
+  { usernameField: 'email' },
   function(email, password, done) {
+    console.log(email, password);
     db.User.findOne({ email: email }, function (err, user) {
-      if (err) return console.error(err);
+      if (err) return done(err);
       if (!user || user.password !== password) {
-        return done(null, false, { message: 'Incorrect username or password.' });
+        return done(null, false);
       }
       user.lastActive = Date.now();
       user.save(done);

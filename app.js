@@ -10,7 +10,7 @@ var passport = require('passport');
 
 // Initialize the database and then the application.
 var db = simpledb.init(
-  process.env.CONNECTION_STRING || 'mongodb://localhost/pawproject',
+  process.env.CONNECTION_STRING || 'mongodb://pawproject:4thepaws@ds052827.mongolab.com:52827/pp-dev',
   function (err, db) {
     if (err) return console.error(err);
     // TODO: Initialize the database with seed data if it doesn't exist.
@@ -19,6 +19,12 @@ var db = simpledb.init(
 
 var app = express();
 
+var routes = {
+  api: require('./routes/api'),
+  auth: require('./routes/auth'),
+  pages: require('./routes/pages')
+};
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -26,7 +32,7 @@ app.set('view engine', 'jade');
 //app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({
   secret: process.env.SESSION_SECRET || '5up3r133753cr3t',
@@ -54,9 +60,9 @@ app.get('/session', function (req, res) {
 });
 
 // Page endpoints.
-app.use('/auth', require('./routes/auth'));
-app.use('/api', require('./routes/api'));
-app.use('/', require('./routes/pages'));
+app.use('/auth', routes.auth);
+app.use('/api', routes.api);
+app.use('/', routes.pages);
 
 // Bootstrap CSS redirects.
 app.get('/fonts/:item', function (req, res) {
