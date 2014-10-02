@@ -47,7 +47,7 @@ html(lang="en")
         // Group all nav content so it can be toggled on mobile displays.
         div#site-navbar.collapse.navbar-collapse
           ul.nav.navbar-nav
-            li.active
+            li
               a(href="/") Home
             li
               a(href="/blog") Blog
@@ -57,7 +57,7 @@ html(lang="en")
               a(href="/about") About
             li
               a(href="/contact") Contact
-            li
+            //-li
               a(href="/groups") Groups
             li.dropdown
               a.dropdown-toggle(href="#", data-toggle="dropdown") You Can Help <b class="caret"></b>
@@ -78,7 +78,7 @@ html(lang="en")
                     span= user.name.full
                     br
                     a(href="/auth/logout?redirect=" + currentUrl) logout
-                  img.profile-photo(src="http://graph.facebook.com/" + user.facebookId + "/picture?width=40&height=40")
+                  //img.profile-photo(src="http://graph.facebook.com/" + user.facebookId + "/picture?width=40&height=40")
     div.container
       block content
       br

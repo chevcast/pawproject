@@ -1,27 +1,41 @@
 extends ../layout
 
 block content
+  - errors = errors ? errors : {}
+  - body = body ? body : {}
   div.row
     form.col-md-6.col-md-offset-2.well(action="/auth/signup", method="POST")
       div.form-group
         label(for="email") Email
-        input.form-control(type="email", name="email", placeholder="Enter an email address.")
+        input.form-control(type="email", name="email", placeholder="Enter an email address.", value="#{body.email || ''}")
+        if errors.email
+          div.text-danger= errors.email.message
       div.form-group
         label(for="confirmEmail") Confirm Email
-        input.form-control(type="email", name="confirmEmail", placeholder="Re-type your email to confirm.")
+        input.form-control(type="email", name="confirmEmail", placeholder="Re-type your email to confirm.", value="#{body.confirmEmail || ''}")
+        if errors.confirmEmail
+          div.text-danger= errors.confirmEmail.message
       div.form-group
         label(for="password") Choose a Password
-        input.form-control(type="password", name="password", placeholder="Type a password.")
+        input.form-control(type="password", name="password", placeholder="Type a password.", value="#{body.password || ''}")
+        if errors.password
+          div.text-danger= errors.password.message
       div.form-group
         label(for="confirmPassword") Confirm Password
-        input.form-control(type="password", name="confirmPassword", placeholder="Re-type your password to confirm.")
+        input.form-control(type="password", name="confirmPassword", placeholder="Re-type your password to confirm.", value="#{body.confirmPassword || ''}")
+        if errors.confirmPassword
+          div.text-danger= errors.confirmPassword.message
       div.form-group
         label(for="firstName") First Name
-        input.form-control(type="text", name="firstName", placeholder="Supply your first name.")
+        input.form-control(type="text", name="firstName", placeholder="Supply your first name.", value="#{body.firstName || ''}")
+        if errors['name.first']
+          div.text-danger= errors['name.first'].message
       div.form-group
         label(for="lastName") Last Name
-        input.form-control(type="text", name="lastName", placeholder="Supply your last name.")
+        input.form-control(type="text", name="lastName", placeholder="Supply your last name.", value="#{body.lastName || ''}")
       div.form-group
         label(for="authCode") Authorization Code
-        input.form-control(type="text", name="authCode", placeholder="Currently to sign up you need a pre-approved authorization code.")
+        input.form-control(type="text", name="authCode", placeholder="Currently to sign up you need a pre-approved authorization code.", value="#{body.authCode || ''}")
+        if errors.authCode
+          div.text-danger= errors.authCode.message
       button#signUp.btn.btn-primary(type="submit") Sign Up!

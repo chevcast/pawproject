@@ -32,20 +32,52 @@ router.get('/logout', function (req, res) {
 
 // Signup page.
 router.get('/signup', function (req, res) {
-  res.render('auth/signup', { title: 'Sign up' });
+  res.render('auth/signup', {
+    title: 'Sign up'
+  });
 });
 
 // Signup submit.
 router.post('/signup', function (req, res) {
   var email = req.param('email');
+  var confirmEmail = req.param('confirmEmail');
   var password = req.param('password');
+  var confirmPassword = req.param('confirmPassword');
   var firstName = req.param('firstName');
   var lastName = req.param('lastName');
   var authCode = req.param('authCode').replace(/-/g, '');
+  var errors = {};
+
+  function invalidate(errors) {
+    res.render('auth/signup', {
+      title: 'Sign up errors',
+      errors: errors,
+      body: req.body
+    });
+  }
+
+  if (email !== confirmEmail) {
+    errors.confirmEmail = {
+      message: 'Emails do not match.'
+    };
+  }
+  if (password !== confirmPassword) {
+    errors.confirmPassword = {
+      message: 'Passwords do not match.'
+    };
+  }
+
+  if (Object.keys(errors).length > 0) {
+    return invalidate(errors);
+  }
+
   db.AuthCode.findOne({ code: authCode }, function (err, authCode) {
     if (err) return console.error(err);
     if (!authCode) {
-      return res.redirect('/auth/signup');
+      errors.authCode = {
+        message: 'Authorization code invalid.'
+      };
+      return invalidate(errors);
     }
     var newUser = new db.User({
       email: email,
@@ -58,10 +90,15 @@ router.post('/signup', function (req, res) {
       superAdmin: true
     });
     newUser.save(function (err, user) {
-      if (err) return console.error(err);
+      if (err && err.errors) {
+        return invalidate(err.errors);
+      }
       authCode.remove(function (err) {
         if (err) return console.error(err);
-        res.redirect(req.session.redirectUrl);
+        req.logIn(user, function (err) {
+          if (err) return console.error(err);
+          res.redirect(req.session.redirectUrl);
+        });
       });
     });
   })
@@ -87,7 +124,20 @@ passport.use(new LocalStrategy(
 ));
 
 // Email & Password endpoint.
-router.post('/login', passport.authenticate('local'), function (req, res) {
+router.post('/login', function(req, res, next) {
+  passport.authenticate('local', function(err, user, info) {
+    if (err) { return next(err); }
+    if (!user) { return res.render('auth/login', {
+      title: 'Invalid Credentials',
+      errors: {
+        failure: {
+          message: 'Invalid email or password.'
+        }
+      }
+    }); }
+    req.logIn(user, next);
+  })(req, res, next);
+}, function (req, res) {
   res.redirect(req.session.redirectUrl);
 });
 
