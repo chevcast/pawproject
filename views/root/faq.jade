@@ -6,7 +6,7 @@ block content
       button.btn.btn-primary.pull-right(ng-click="newQuestion()") New Question
     h1 Frequently Asked Questions
     // Show a container for each frequently asked question.
-    div.item.well(
+    div.item.well.animated.rubberBand(
       ng-repeat="item in items",
       ng-mouseover="item.showControls = true",
       ng-mouseleave="item.showControls = false"

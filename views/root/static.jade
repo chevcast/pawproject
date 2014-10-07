@@ -5,7 +5,7 @@ block content
     if (user && user.isAdmin())
       button.btn.btn-primary.pull-right(ng-click="ctrl.edit = true") Edit Page
     h1= title
-    div(ng-switch="ctrl.edit")
+    div.animated.bounceInUp(ng-switch="ctrl.edit")
       div.well(ng-switch-when="false" ng-bind-html="ctrl.parsedContent")
       form.well(ng-switch-when="true")
         div.form-group
