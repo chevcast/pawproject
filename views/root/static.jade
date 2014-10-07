@@ -4,7 +4,7 @@ block content
   div(ng-app="staticContent", ng-controller="staticCtrl as ctrl", ng-init="ctrl.init('#{resourceName}')")
     if (user && user.isAdmin())
       button.btn.btn-primary.pull-right(ng-click="ctrl.edit = true") Edit Page
-    h1= title
+    h1.animated.rollIn= title
     div.animated.bounceInUp(ng-switch="ctrl.edit")
       div.well(ng-switch-when="false" ng-bind-html="ctrl.parsedContent")
       form.well(ng-switch-when="true")
