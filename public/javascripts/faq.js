@@ -5,7 +5,7 @@ faqApp.factory('Faq', function ($resource) {
   return $resource('/api/faq/:id', { id: '@_id' });
 });
 
-faqApp.controller('faqController', function ($scope, Faq, $sce) {
+faqApp.controller('faqController', function ($scope, Faq, $sce, $location, $anchorScroll) {
 
   // Set the items to an empty array.
   $scope.items = [];
@@ -39,6 +39,8 @@ faqApp.controller('faqController', function ($scope, Faq, $sce) {
       showControles: false,
       faq: new Faq()
     });
+    $location.hash('bottom');
+    $anchorScroll();
   };
 
   // Compare the updated faq to the original to determine if it has
@@ -89,7 +91,19 @@ faqApp.controller('faqController', function ($scope, Faq, $sce) {
   $scope.save = function (item) {
     item.faq.$save(function () {
       item.edit = false;
+      $scope.toggleItem(item);
     });
+  };
+
+  $scope.toggleItem = function (currentItem) {
+    currentItem.visible = !currentItem.visible;
+    if (currentItem.visible) {
+      $scope.items.forEach(function (item) {
+        if (item !== currentItem) {
+          item.visible = false;
+        }
+      });
+    }
   };
 
 });

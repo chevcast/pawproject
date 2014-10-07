@@ -49,25 +49,27 @@ html(lang="en")
           ul.nav.navbar-nav
             li
               a(href="/") Home
-            li
+            //li
               a(href="/blog") Blog
             li
               a(href="/faq") FAQ
             li
               a(href="/about") About
             li
+              a(href="/team") The Team
+            //li
               a(href="/contact") Contact
-            //-li
+            //li
               a(href="/groups") Groups
             li.dropdown
               a.dropdown-toggle(href="#", data-toggle="dropdown") You Can Help <b class="caret"></b>
               ul.dropdown-menu
                 li
-                  a(href="/donate") Make A Donation
+                  a(href="/contribute") Make A Donation
                 li
                   a(href="/mailinglist") Join Our Mailing List
                 li
-                  a(href="/youcanhelp") What You Can Do
+                  a(href="/youcanhelp") You Can Help
           ul.nav.navbar-nav.navbar-right
             li
               if (!user)
@@ -82,7 +84,7 @@ html(lang="en")
     div.container
       block content
       br
-      div.row.footer
+      //div.row.footer
         a User Agreement
         span &bull;
         a Privacy Policy

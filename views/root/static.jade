@@ -1,0 +1,17 @@
+extends ../layout
+
+block content
+  div(ng-app="staticContent", ng-controller="staticCtrl as ctrl", ng-init="ctrl.init('#{resourceName}')")
+    if (user && user.isAdmin())
+      button.btn.btn-primary.pull-right(ng-click="ctrl.edit = true") Edit Page
+    h1= title
+    div(ng-switch="ctrl.edit")
+      div.well(ng-switch-when="false" ng-bind-html="ctrl.parsedContent")
+      form.well(ng-switch-when="true")
+        div.form-group
+          label(for="content") Content
+          textarea.form-control(name="content", rows="10", ng-model="ctrl.content.value")
+        button.btn.btn-success(ng-click="ctrl.save()") Save
+        button.btn.btn-danger(ng-click="ctrl.edit=false") Cancel
+  script(src="/javascripts/staticContent.js")
+  link(rel="stylesheet", href="/stylesheets/staticContent.css")

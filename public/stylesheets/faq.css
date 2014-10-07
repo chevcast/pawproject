@@ -1,33 +1,33 @@
 div.item {
-    padding: 15px;
-    margin-bottom: 25px;
-    background-color: #eee;
-    position: relative;
+  padding: 15px;
+  margin-bottom: 25px;
+  background-color: #eee;
+  position: relative;
 }
 
 div.item:hover {
 }
 
 div.controls {
-    font-size: large;
-    float: right;
+  font-size: large;
+  float: right;
 }
 span.edit-item {
-    color: #060;
-    cursor: pointer;
-    margin-right: 15px;
+  color: #060;
+  cursor: pointer;
+  margin-right: 15px;
 }
 span.remove-item {
-    color: #c00;
-    cursor: pointer;
+  color: #c00;
+  cursor: pointer;
 }
 
 div.question {
-    font-weight: bold;
-    font-size: large;
-    margin-bottom: 10px;
+  font-weight: bold;
+  font-size: large;
 }
 
 div.answer {
-    color: #070;
+  color: #070;
+  margin-top: 10px;
 }

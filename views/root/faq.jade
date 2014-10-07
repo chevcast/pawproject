@@ -20,8 +20,10 @@ block content
             div.controls(ng-show="item.showControls")
               span.edit-item.glyphicon.glyphicon-edit(ng-click="edit(item)")
               span.remove-item.glyphicon.glyphicon-minus-sign(ng-click="remove(item)")
-          div.question {{ item.faq.question }}
-          div.answer(ng-bind-html="item.parsedAnswer")
+          div.question
+            span {{ $index }}.&nbsp;
+            a(ng-click="toggleItem(item)", href="#") {{ item.faq.question }}
+          div.answer.animated.zoomInDown(ng-show="item.visible", ng-bind-html="item.parsedAnswer")
         // Show an edit form for new and existing questions.
         form(ng-switch-when="true", name="form")
           div.form-group
@@ -49,6 +51,7 @@ block content
             ng-disabled="form.$invalid || isUnchanged(item)"
           ) Save
           button.btn.btn-danger(ng-click="cancel(item)") Cancel
+    a(id="bottom")
   // Include FAQ-specific scripts and CSS.
   script(src="/javascripts/faq.js")
   link(rel="stylesheet", href="/stylesheets/faq.css")
