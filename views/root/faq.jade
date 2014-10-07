@@ -23,7 +23,7 @@ block content
           div.question
             span {{ $index }}.&nbsp;
             a(ng-click="toggleItem(item)", href="#") {{ item.faq.question }}
-          div.answer.animated.zoomInDown(ng-show="item.visible", ng-bind-html="item.parsedAnswer")
+          div.answer.animated.fadeIn(ng-show="item.visible", ng-bind-html="item.parsedAnswer")
         // Show an edit form for new and existing questions.
         form(ng-switch-when="true", name="form")
           div.form-group
