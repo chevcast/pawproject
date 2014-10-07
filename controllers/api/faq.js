@@ -1,5 +1,4 @@
 var db = require('mongoose-simpledb').db;
-var marked = require('marked');
 
 exports.create = function (req, res) {
   var faq = new db.Faq({
@@ -15,9 +14,6 @@ exports.create = function (req, res) {
 exports.read = function (req, res) {
   db.Faq.find(function (err, faqs) {
     if (err) return console.error(err);
-    faqs.forEach(function (faq) {
-      faq.answer = marked(faq.answer);
-    });
     res.send(faqs);
   });
 };

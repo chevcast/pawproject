@@ -89,6 +89,7 @@ faqApp.controller('faqController', function ($scope, Faq, $sce, $location, $anch
 
   // Execute a save operation on the faq and set edit to false.
   $scope.save = function (item) {
+    debugger;
     item.faq.$save(function () {
       item.edit = false;
       $scope.toggleItem(item);
