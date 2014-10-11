@@ -51,6 +51,10 @@ h1 {
   vertical-align: top;
 }
 
+ul.paws {
+  padding-left: 0;
+}
+
 ul.paws li {
   background: url(/images/paw-bullet.png) no-repeat left top;
   padding: 7px 0px 15px 40px;
