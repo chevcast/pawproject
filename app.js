@@ -44,8 +44,8 @@ app.use(passport.session());
 app.use(function (req, res, next) {
   app.locals.user = req.user;
   app.locals.currentUrl = req.url;
-  if (req.param('redirect'))
-    req.session.redirectUrl = req.param('redirect');
+  if (req.param('redirectUrl'))
+    req.session.redirectUrl = req.param('redirectUrl');
   else if (!req.session.redirectUrl)
     req.session.redirectUrl = '/';
   next();
