@@ -79,7 +79,7 @@ html(lang="en")
                   div.auth-info(style="display: inline-block;")
                     span= user.name.full
                     br
-                    a(href="/auth/logout?redirect=" + currentUrl) logout
+                    a(href="/auth/logout?redirectUrl=" + currentUrl) logout
                   //img.profile-photo(src="http://graph.facebook.com/" + user.facebookId + "/picture?width=40&height=40")
     div.container
       block content
