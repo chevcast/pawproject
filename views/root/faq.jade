@@ -2,9 +2,10 @@ extends ../layout
 
 block content
   div(ng-app="faq", ng-controller="faqController")
-    if (user && user.isAdmin())
-      button.btn.btn-primary.pull-right(ng-click="newQuestion()") New Question
     h1.animated.rollIn Frequently Asked Questions
+    if (user && user.isAdmin())
+      button.btn.btn-primary.center-block(ng-click="newQuestion()") New Question
+      hr
     // Show a container for each frequently asked question.
     div.item.well.animated.rubberBand(
       ng-repeat="item in items",
@@ -50,7 +51,7 @@ block content
             ng-click="save(item)",
             ng-disabled="form.$invalid || isUnchanged(item)"
           ) Save
-          button.btn.btn-danger(ng-click="cancel(item)") Cancel
+          button.btn.btn-danger.cancel-btn(ng-click="cancel(item)") Cancel
     a(id="bottom")
   // Include FAQ-specific scripts and CSS.
   script(src="/javascripts/faq.js")

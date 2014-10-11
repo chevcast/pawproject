@@ -25,10 +25,6 @@ h1 {
   margin-bottom: 25px;
 }
 
-.btn {
-  margin-right: 10px;
-}
-
 .footer {
   font-size: 12px;
   margin: 25px 0 25px 0;
@@ -61,4 +57,14 @@ ul.paws li {
   /* reset styles (optional): */
   list-style: none;
   margin: 0;
+}
+
+@media (max-width: 768px) {
+  .too-large-on-mobile {
+    width: 100%;
+  }
+}
+
+.cancel-btn {
+  margin-left: 10px;
 }
