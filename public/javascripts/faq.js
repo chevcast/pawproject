@@ -5,7 +5,7 @@ faqApp.factory('Faq', function ($resource) {
   return $resource('/api/faq/:id', { id: '@_id' });
 });
 
-faqApp.controller('faqController', function ($scope, Faq, $sce, $location, $anchorScroll) {
+faqApp.controller('faqController', function ($scope, Faq, $sce, $location, $anchorScroll, $timeout) {
 
   // Set the items to an empty array.
   $scope.items = [];
@@ -30,6 +30,8 @@ faqApp.controller('faqController', function ($scope, Faq, $sce, $location, $anch
         faq: faq
       });
     });
+    $scope.$apply();
+    wow.init();
   });
 
   // Add a new meta-item to the array with a new Faq.

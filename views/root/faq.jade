@@ -7,10 +7,11 @@ block content
       button.btn.btn-primary.center-block(ng-click="newQuestion()") New Question
       hr
     // Show a container for each frequently asked question.
-    div.item.well.animated.rubberBand(
+    div.item.well.wow(
       ng-repeat="item in items",
       ng-mouseover="item.showControls = true",
-      ng-mouseleave="item.showControls = false"
+      ng-mouseleave="item.showControls = false",
+      ng-class="{ rotateInUpRight: !($index % 2), rotateInUpLeft: ($index % 2)}"
     )
       // Either show the question as it should be shown to the user, or show an edit form.
       div(ng-switch="item.edit")
