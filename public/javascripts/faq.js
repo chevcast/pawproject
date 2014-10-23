@@ -30,7 +30,6 @@ faqApp.controller('faqController', function ($scope, Faq, $sce, $location, $anch
         faq: faq
       });
     });
-    $scope.$apply();
     wow.init();
   });
 

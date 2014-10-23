@@ -2,8 +2,8 @@ extends ../layout
 
 block content
   div(ng-app="staticContent", ng-controller="staticCtrl as ctrl", ng-init="ctrl.init('#{resourceName}')")
-    h1.animated.rollIn= title
-    div.animated.bounceInUp(ng-switch="ctrl.edit")
+    h1.wow.zoomIn= title
+    div.wow.bounceInUp(ng-switch="ctrl.edit")
       div.well(ng-switch-when="false")
         if (user && user.isAdmin())
           button.btn.btn-primary.center-block(ng-click="ctrl.edit = true") Edit Page
