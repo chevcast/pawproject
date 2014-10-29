@@ -1,5 +1,6 @@
 exports.schema = {
   url: String,
+  should404: Boolean,
   redirectUrl: String,
   count: Number,
   triggered: [{

@@ -77,6 +77,7 @@ app.use(function(req, res, next) {
     if (!lr) {
       lr = new db.LegacyRedirect({
         url: req.url,
+        should404: false,
         redirectUrl: 'http://www1.pawproject.org' + req.url,
         count: 0,
         triggered: []
@@ -91,15 +92,14 @@ app.use(function(req, res, next) {
     // Save legacy redirect.
     lr.save(function (err) {
       if (err) next(err);
+      if (lr.should404) {
+        var err = new Error(lr.url + ' Could Not Be Found');
+        err.status = 404;
+        next(err);
+      }
       res.redirect(lr.redirectUrl);
     });
   });
-
-  /* Disabled while legacy redirect is in place.
-   *var err = new Error('Not Found');
-   *err.status = 404;
-   *next(err);
-   */
 });
 
 /// error handlers
