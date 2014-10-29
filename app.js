@@ -1,6 +1,6 @@
 var express = require('express');
 var path = require('path');
-var favicon = require('static-favicon');
+var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -29,7 +29,7 @@ var routes = {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-//app.use(favicon());
+app.use(favicon('./public/images/favicon-paw.png'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -71,9 +71,34 @@ app.get('/fonts/:item', function (req, res) {
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+  db.LegacyRedirect.findOne({ url: req.url }, function (err, lr) {
+    if (err) next(err);
+    // If a legacy redirect does not yet exist for the request URL, create one.
+    if (!lr) {
+      lr = new db.LegacyRedirect({
+        url: req.url,
+        count: 0,
+        triggered: []
+      });
+    }
+    // Update legacy redirect count and add information about the current request.
+    lr.count++;
+    lr.triggered.push({
+      date: Date.now(),
+      ip: req.ip
+    });
+    // Save legacy redirect.
+    lr.save(function (err) {
+      if (err) next(err);
+      res.redirect('http://www1.pawproject.org' + lr.url);
+    });
+  });
+
+  /* Disabled while legacy redirect is in place.
+   *var err = new Error('Not Found');
+   *err.status = 404;
+   *next(err);
+   */
 });
 
 /// error handlers
