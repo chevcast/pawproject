@@ -5,6 +5,7 @@ exports.schema = {
   count: Number,
   triggered: [{
     date: Date,
-    ip: String
+    ip: String,
+    referrer: String
   }]
 };

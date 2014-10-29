@@ -94,7 +94,8 @@ app.use(function(req, res, next) {
       lr.count++;
       lr.triggered.push({
         date: Date.now(),
-        ip: req.ip
+        ip: req.ip,
+        referrer: req.get('referrer')
       });
       // Save legacy redirect.
       lr.save(function (err) {
