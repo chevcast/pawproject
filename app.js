@@ -77,6 +77,7 @@ app.use(function(req, res, next) {
     if (!lr) {
       lr = new db.LegacyRedirect({
         url: req.url,
+        redirectUrl: req.url,
         count: 0,
         triggered: []
       });
@@ -90,7 +91,7 @@ app.use(function(req, res, next) {
     // Save legacy redirect.
     lr.save(function (err) {
       if (err) next(err);
-      res.redirect('http://www1.pawproject.org' + lr.url);
+      res.redirect('http://www1.pawproject.org' + lr.redirectUrl);
     });
   });
 
