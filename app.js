@@ -71,14 +71,15 @@ app.get('/fonts/:item', function (req, res) {
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
+  var requestUrl = req.url.replace(/\/$/g, "");
   db.LegacyRedirect.findOne({ url: req.url }, function (err, lr) {
     if (err) next(err);
     // If a legacy redirect does not yet exist for the request URL, create one.
     if (!lr) {
       lr = new db.LegacyRedirect({
-        url: req.url,
+        url: requestUrl,
         should404: false,
-        redirectUrl: 'http://www1.pawproject.org' + req.url,
+        redirectUrl: 'http://www1.pawproject.org' + requestUrl,
         count: 0,
         triggered: []
       });
