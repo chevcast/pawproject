@@ -83,22 +83,25 @@ app.use(function(req, res, next) {
         triggered: []
       });
     }
-    // Update legacy redirect count and add information about the current request.
-    lr.count++;
-    lr.triggered.push({
-      date: Date.now(),
-      ip: req.ip
-    });
-    // Save legacy redirect.
-    lr.save(function (err) {
-      if (err) next(err);
-      if (lr.should404) {
-        var err = new Error(lr.url + ' Could Not Be Found');
-        err.status = 404;
-        next(err);
-      }
-      res.redirect(lr.redirectUrl);
-    });
+    // Check if legacy redirect is supposed to send a 404.
+    // If so, send a 404 response and don't bother updating the legacy redirect.
+    if (lr.should404) {
+      var err = new Error(lr.url + ' Could Not Be Found');
+      err.status = 404;
+      next(err);
+    } else {
+      // Update legacy redirect count and add information about the current request.
+      lr.count++;
+      lr.triggered.push({
+        date: Date.now(),
+        ip: req.ip
+      });
+      // Save legacy redirect.
+      lr.save(function (err) {
+        if (err) next(err);
+        res.redirect(lr.redirectUrl);
+      });
+    }
   });
 });
 
