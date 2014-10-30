@@ -23,10 +23,10 @@ exports.mailingList = function (req, res) {
   });
 };
 
-exports.youCanHelp = function (req, res) {
+exports.whatYouCanDo = function (req, res) {
   res.render('root/static', {
     title: 'You Can Help',
-    resourceName: 'youCanHelpContent'
+    resourceName: 'whatYouCanDoContent'
   });
 };
 
