@@ -25,7 +25,7 @@ exports.mailingList = function (req, res) {
 
 exports.whatYouCanDo = function (req, res) {
   res.render('root/static', {
-    title: 'You Can Help',
+    title: 'What You Can Do To Help',
     resourceName: 'whatYouCanDoContent'
   });
 };
