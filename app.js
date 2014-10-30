@@ -72,7 +72,7 @@ app.get('/fonts/:item', function (req, res) {
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var requestUrl = req.url.replace(/\/+$/g, "");
-  db.LegacyRedirect.findOne({ url: req.url }, function (err, lr) {
+  db.LegacyRedirect.findOne({ url: requestUrl }, function (err, lr) {
     if (err) return next(err);
     // If a legacy redirect does not yet exist for the request URL, create one.
     if (!lr) {
