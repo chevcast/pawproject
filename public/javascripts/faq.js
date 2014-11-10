@@ -1,5 +1,9 @@
 var faqApp = angular.module('faq', ['ngResource']);
 
+faqApp.run(function ($anchorScroll) {
+  $anchorScroll.yOffset = 65;//angular.element('#navigation');
+});
+
 // Map a Faq $resource to its API.
 faqApp.factory('Faq', function ($resource) {
   return $resource('/api/faq/:id', { id: '@_id' });
@@ -97,7 +101,7 @@ faqApp.controller('faqController', function ($scope, Faq, $sce, $location, $anch
     });
   };
 
-  $scope.toggleItem = function (currentItem, $index) {
+  $scope.toggleItem = function (currentItem) {
     currentItem.visible = !currentItem.visible;
     if (currentItem.visible) {
       $scope.items.forEach(function (item) {
@@ -106,11 +110,8 @@ faqApp.controller('faqController', function ($scope, Faq, $sce, $location, $anch
         }
       });
     }
-    if ($index > 0) {
-      var scrollItem = $scope.items[$index - 1];
-      $location.hash(scrollItem.faq._id);
-      $anchorScroll();
-    }
+    $location.hash(currentItem.faq._id);
+    //$anchorScroll();
   };
 
 });
