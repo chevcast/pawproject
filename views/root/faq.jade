@@ -11,6 +11,7 @@ block content
       ng-repeat="item in items",
       ng-mouseover="item.showControls = true",
       ng-mouseleave="item.showControls = false",
+      id="{{item.faq._id}}"
     )
       // Either show the question as it should be shown to the user, or show an edit form.
       div(ng-switch="item.edit")
@@ -21,9 +22,9 @@ block content
             div.controls(ng-show="item.showControls")
               span.edit-item.glyphicon.glyphicon-edit(ng-click="edit(item)")
               span.remove-item.glyphicon.glyphicon-minus-sign(ng-click="remove(item)")
-          div.question
+          div.question(id="{{item.faq._id}}")
             span {{ $index }}.&nbsp;
-            a(ng-click="toggleItem(item)", href="#") {{ item.faq.question }}
+            span.link(ng-click="toggleItem(item, $index)") {{ item.faq.question }}
           div.answer.animated.fadeIn(ng-show="item.visible", ng-bind-html="item.parsedAnswer")
         // Show an edit form for new and existing questions.
         form(ng-switch-when="true", name="form")

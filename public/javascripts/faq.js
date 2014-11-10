@@ -97,7 +97,7 @@ faqApp.controller('faqController', function ($scope, Faq, $sce, $location, $anch
     });
   };
 
-  $scope.toggleItem = function (currentItem) {
+  $scope.toggleItem = function (currentItem, $index) {
     currentItem.visible = !currentItem.visible;
     if (currentItem.visible) {
       $scope.items.forEach(function (item) {
@@ -105,6 +105,11 @@ faqApp.controller('faqController', function ($scope, Faq, $sce, $location, $anch
           item.visible = false;
         }
       });
+    }
+    if ($index > 0) {
+      var scrollItem = $scope.items[$index - 1];
+      $location.hash(scrollItem.faq._id);
+      $anchorScroll();
     }
   };
 

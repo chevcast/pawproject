@@ -72,3 +72,9 @@ ul.paws li {
 .cancel-btn {
   margin-left: 10px;
 }
+
+a, .link {
+  color: #93c54b;
+  text-decoration: none;
+  cursor: pointer;
+}
