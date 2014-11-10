@@ -1,7 +1,7 @@
 var faqApp = angular.module('faq', ['ngResource']);
 
 faqApp.run(function ($anchorScroll) {
-  $anchorScroll.yOffset = 65;//angular.element('#navigation');
+  $anchorScroll.yOffset = angular.element('#navigation').height() + 15;
 });
 
 // Map a Faq $resource to its API.
