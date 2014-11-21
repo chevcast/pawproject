@@ -27,6 +27,7 @@
     "commit": "94e2bdd5cf6d56a806994f203484c4faf391ccca"
   },
   "_source": "git://github.com/matthieua/WOW.git",
-  "_target": "~1.0.1",
-  "_originalSource": "wowjs"
+  "_target": "~1.0.2",
+  "_originalSource": "wowjs",
+  "_direct": true
 }
