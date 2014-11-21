@@ -33,7 +33,8 @@ router.get('/logout', function (req, res) {
 // Signup page.
 router.get('/signup', function (req, res) {
   res.render('auth/signup', {
-    title: 'Sign up'
+    title: 'Sign up',
+    authCode: req.param('authCode') || ''
   });
 });
 

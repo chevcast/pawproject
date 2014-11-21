@@ -5,6 +5,8 @@ block content
   - body = body ? body : {}
   div.row
     form.col-md-6.col-md-offset-3.well(action="/auth/signup", method="POST")
+      div.alert.alert-warning.
+        This sign-up form is for site administrators only. There is currently no way to sign in as a visitor, though we are planning to introduce such functionality at a later date :)
       div.form-group
         label(for="email") Email
         input.form-control(type="email", name="email", placeholder="Enter an email address.", value="#{body.email || ''}")
@@ -35,7 +37,15 @@ block content
         input.form-control(type="text", name="lastName", placeholder="Supply your last name.", value="#{body.lastName || ''}")
       div.form-group
         label(for="authCode") Authorization Code
-        input.form-control(type="text", name="authCode", placeholder="Currently to sign up you need a pre-approved authorization code.", value="#{body.authCode || ''}")
+          if authCode
+            span.text-warning(style="font-style:italic") &nbsp;(this has been pre-populated for you)
+        input.form-control(
+          type="text",
+          name="authCode",
+          readonly=!!authCode
+          placeholder="Currently to sign up you need a pre-approved authorization code.",
+          value="#{body.authCode || authCode || ''}"
+        )
         if errors.authCode
           div.text-danger= errors.authCode.message
       button#signUp.btn.btn-primary(type="submit") Sign Up!
