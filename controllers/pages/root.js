@@ -31,7 +31,10 @@ exports.whatYouCanDo = function (req, res) {
 };
 
 exports.team = function (req, res) {
-  res.redirect('http://www1.pawproject.org/team');
+  res.render('root/static', {
+    title: 'The Paw Project Team',
+    resourceName: 'teamContent'
+  });
 };
 
 exports.legislation = function (req, res) {
