@@ -29,3 +29,4 @@ node_modules
 *.swo
 
 temp.js
+Session.vim
