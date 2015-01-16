@@ -101,7 +101,10 @@ app.use(function(req, res, next) {
       // Save legacy redirect.
       lr.save(function (err) {
         if (err) next(err);
-        res.redirect(lr.redirectUrl);
+        //res.redirect(lr.redirectUrl);
+        res.render('redirect', {
+          redirectUrl: lr.redirectUrl
+        })
       });
     }
   });
