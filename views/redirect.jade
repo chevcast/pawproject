@@ -2,11 +2,11 @@ extends layout
 
 block content
   h2 Hey there!
-  p(style="font-size: 18px;") We built a new website but we're not yet finished moving all the content from the old website to the new one. The content you are trying to access has not yet been moved over. For now, we are redirecting you to our old website. If you are not redirected within 10 seconds, please click the link below.
-  img(src="/images/ajax-loader.gif")
+  p(style="font-size: 18px;") We built a new website but we're not yet finished moving all the content from the old website to the new one. The content you are trying to access has not yet been moved over. For now, we are redirecting you to our old website. If you are not redirected within 15 seconds, please click the link below.
+  img.text-center(src="/images/ajax-loader.gif")
   h4.text-center
     a(href="#{redirectUrl}")= redirectUrl
   script.
     setTimeout(function () {
       window.location.href = '#{redirectUrl}';
-    }, 10000);
+    }, 12500);
