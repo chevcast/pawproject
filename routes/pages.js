@@ -10,9 +10,5 @@ router.get('/contribute', pages.contribute);
 router.get('/whatyoucando', pages.whatYouCanDo);
 router.get('/team', pages.team);
 router.get('/contact', pages.contact);
-router.get('/legislation', pages.legislation);
-router.get('/tshirtcontest', function (req, res) {
-  res.redirect('http://www1.pawproject.org/tshirtcontest');
-});
 
 module.exports = router;
