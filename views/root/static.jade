@@ -9,7 +9,7 @@ block content
           button.btn.btn-primary.center-block(ng-click="ctrl.edit = true") Edit Page
           hr
         div(ng-bind-html="ctrl.parsedContent")
-      form.well(ng-switch-when="true")
+      form.well(ng-switch-when="true", ng-cloak)
         div.form-group
           label(for="content") Content
           textarea.form-control(name="content", rows="10", ng-model="ctrl.content.value")

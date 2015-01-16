@@ -19,7 +19,7 @@ block content
         div(ng-switch-when="false")
           // Show edit/delete controls on hover.
           if (user && user.isAdmin())
-            div.controls(ng-show="item.showControls")
+            div.controls(ng-show="item.showControls", ng-cloak)
               span.edit-item.glyphicon.glyphicon-edit(ng-click="edit(item)")
               span.remove-item.glyphicon.glyphicon-minus-sign(ng-click="remove(item)")
           div.question(id="{{item.faq._id}}")
@@ -27,7 +27,7 @@ block content
             span.link(ng-click="toggleItem(item, $index)") {{ item.faq.question }}
           div.answer.animated.fadeIn(ng-show="item.visible", ng-bind-html="item.parsedAnswer")
         // Show an edit form for new and existing questions.
-        form(ng-switch-when="true", name="form")
+        form(ng-switch-when="true", ng-cloak, name="form")
           div.form-group
             label(for="question") Question
             input.form-control(
