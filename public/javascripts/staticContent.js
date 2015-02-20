@@ -1,6 +1,6 @@
-var staticContentApp = angular.module('staticContent', ['ngResource']);
+var app = angular.module('pawproject');
 
-staticContentApp.controller('staticCtrl', function ($http, $scope, $sce, $resource) {
+app.controller('staticCtrl', function ($http, $scope, $sce, $resource) {
   var staticCtrl = this;
   $scope.$watch(function () {
     if (staticCtrl.content) {

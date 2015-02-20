@@ -1,7 +1,7 @@
 extends ../layout
 
 block content
-  div(ng-app="staticContent", ng-controller="staticCtrl as ctrl", ng-init="ctrl.init('#{resourceName}')")
+  div(ng-controller="staticCtrl as ctrl", ng-init="ctrl.init('#{resourceName}')")
     h1.wow.zoomIn= title
     div.wow.bounceInUp(ng-switch="ctrl.edit")
       div.well(ng-switch-when="false")

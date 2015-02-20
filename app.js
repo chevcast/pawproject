@@ -104,7 +104,7 @@ app.use(function(req, res, next) {
         //res.redirect(lr.redirectUrl);
         res.render('redirect', {
           redirectUrl: lr.redirectUrl
-        })
+        });
       });
     }
   });

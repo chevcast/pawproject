@@ -1,7 +1,7 @@
 extends ../layout
 
 block content
-  div(ng-app="faq", ng-controller="faqController")
+  div(ng-controller="faqController")
     h1.wow.zoomIn Frequently Asked Questions
     if (user && user.isAdmin())
       button.btn.btn-primary.center-block(ng-click="newQuestion()") New Question

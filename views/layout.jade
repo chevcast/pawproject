@@ -1,5 +1,5 @@
 doctype html
-html(lang="en")
+html(lang="en", data-ng-app="pawproject")
   head
     title= title
     meta(charset="utf-8")
@@ -29,6 +29,10 @@ html(lang="en")
 
     // Our Styles
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/feedback.css')
+
+    // Our Scripts
+    script(src="/javascripts/pawproject.js")
 
     script.
         var wow = new WOW();
@@ -96,6 +100,19 @@ html(lang="en")
         a User Agreement
         span &bull;
         a Privacy Policy
+    div(data-ng-controller="feedbackController")
+      div.feedback(data-ng-click="showFeedbackForm = !showFeedbackForm") Report a Problem
+      form.well.feedback-form(ng-show="showFeedbackForm")
+        div.form-group
+          label(for="userName") Your name
+          input.form-control(name="userName", placeholder="Please enter your name.")
+        div.form-group
+          label(for="userEmail") Email <span class="text-muted">(not shared with anyone)</span>
+          input.form-control(name="userName", placeholder="Please enter your email.")
+        div.form-group
+          label(for="description") Description
+          textarea.form-control(name="description")
+        button.btn.btn-primary(type="submit") Submit
     script.
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -104,3 +121,4 @@ html(lang="en")
 
       ga('create', 'UA-7292713-18', 'auto');
       ga('send', 'pageview');
+  // </body>

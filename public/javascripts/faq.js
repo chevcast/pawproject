@@ -1,15 +1,15 @@
-var faqApp = angular.module('faq', ['ngResource']);
+var app = angular.module('pawproject');
 
-faqApp.run(function ($anchorScroll) {
+app.run(function ($anchorScroll) {
   $anchorScroll.yOffset = angular.element('#navigation').height() + 15;
 });
 
 // Map a Faq $resource to its API.
-faqApp.factory('Faq', function ($resource) {
+app.factory('Faq', function ($resource) {
   return $resource('/api/faq/:id', { id: '@_id' });
 });
 
-faqApp.controller('faqController', function ($scope, Faq, $sce, $location, $anchorScroll, $timeout) {
+app.controller('faqController', function ($scope, Faq, $sce, $location, $anchorScroll, $timeout) {
 
   // Set the items to an empty array.
   $scope.items = [];
