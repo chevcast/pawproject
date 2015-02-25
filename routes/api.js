@@ -1,6 +1,7 @@
 var router = require('express').Router();
 var faq = require('../controllers/api/faq');
 var variable = require('../controllers/api/variable');
+var feedback = require('../controllers/api/feedback');
 
 function isAdmin(req, res, next) {
   if (req.user && req.user.isAdmin())
@@ -18,5 +19,8 @@ router.delete('/faq/:id', isAdmin, faq.delete);
 // Variable API Routes
 router.post('/variable/:name', isAdmin,  variable.update);
 router.get('/variable/:name', variable.read);
+
+// Feedback Endpoint
+router.post('/reportFeedback', feedback.report);
 
 module.exports = router;
