@@ -5,7 +5,7 @@ Usage
 =====
 
 ```
-$ git clone https://github.com/codetunnel/pawproject.gi
+$ git clone https://github.com/codetunnel/pawproject.git
 $ cd ./pawproject
 $ npm install
 $ npm start
