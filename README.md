@@ -4,9 +4,9 @@
 Usage
 =====
 
-> $ git clone https://github.com/codetunnel/pawproject.git
-> $ cd ./pawproject
-> $ npm install
+> $ git clone https://github.com/codetunnel/pawproject.git  
+> $ cd ./pawproject  
+> $ npm install  
 > $ npm start
 
 Then simply point your browser to `http://localhost:3000`.
