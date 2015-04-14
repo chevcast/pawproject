@@ -1,7 +1,15 @@
 ![](http://i.imgur.com/Kjufsli.png)
 ===========
 
-This repository is where the future version of PawProject.org will be developed.
+Usage
+=====
+
+> $ git clone https://github.com/codetunnel/pawproject.git
+> $ cd ./pawproject
+> $ npm install
+> $ npm start
+
+Then simply point your browser to `http://localhost:3000`.
 
 Technologies
 ============
