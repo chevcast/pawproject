@@ -79,7 +79,7 @@ app.use(function(req, res, next) {
       lr = new db.LegacyRedirect({
         url: requestUrl,
         should404: false,
-        redirectUrl: process.env.OLD_PAW_PROJECT + requestUrl,
+        redirectUrl: process.env.OLD_PAW_PROJECT_URL + requestUrl,
         count: 0,
         triggered: []
       });
